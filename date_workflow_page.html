@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💖 Weekend Plan với BaBe 💖</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Floating Hearts Animation */
+        .heart {
+            position: fixed;
+            color: #ff69b4;
+            font-size: 20px;
+            animation: float 6s ease-in-out infinite;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .header h1 {
+            color: #e91e63;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .header p {
+            color: #666;
+            font-size: 1.2em;
+        }
+
+        .timeline {
+            position: relative;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, #ff69b4, #ff1744);
+            border-radius: 2px;
+        }
+
+        .timeline-item {
+            display: flex;
+            justify-content: flex-end;
+            padding: 20px 0;
+            position: relative;
+            width: 50%;
+            animation: slideInRight 0.8s ease-out forwards;
+            opacity: 0;
+        }
+
+        .timeline-item:nth-child(even) {
+            align-self: flex-end;
+            justify-content: flex-start;
+            animation: slideInLeft 0.8s ease-out forwards;
+        }
+
+        .timeline-item:nth-child(1) { animation-delay: 0.2s; }
+        .timeline-item:nth-child(2) { animation-delay: 0.4s; }
+        .timeline-item:nth-child(3) { animation-delay: 0.6s; }
+        .timeline-item:nth-child(4) { animation-delay: 0.8s; }
+        .timeline-item:nth-child(5) { animation-delay: 1.0s; }
+        .timeline-item:nth-child(6) { animation-delay: 1.2s; }
+        .timeline-item:nth-child(7) { animation-delay: 1.4s; }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .timeline-content {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            width: 300px;
+            position: relative;
+            margin: 0 40px;
+            transition: transform 0.3s ease;
+        }
+
+        .timeline-content:hover {
+            transform: scale(1.05);
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 20px;
+            background: #ff69b4;
+            border-radius: 50%;
+            border: 4px solid white;
+            z-index: 100;
+            animation: heartbeat 2s ease-in-out infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: translateX(-50%) scale(1); }
+            50% { transform: translateX(-50%) scale(1.2); }
+        }
+
+        .time {
+            color: #e91e63;
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-bottom: 8px;
+        }
+
+        .activity {
+            color: #333;
+            font-size: 1em;
+            line-height: 1.5;
+        }
+
+        .emoji {
+            font-size: 1.2em;
+            margin-right: 5px;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        .love-button {
+            background: linear-gradient(45deg, #ff69b4, #ff1744);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 15px;
+        }
+
+        .love-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 5px 15px rgba(255, 105, 180, 0.4);
+        }
+
+        /* Mobile responsive */
+        @media (max-width: 768px) {
+            .timeline::before {
+                left: 20px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                justify-content: flex-start !important;
+                padding-left: 50px;
+            }
+            
+            .timeline-item::before {
+                left: 20px;
+            }
+            
+            .timeline-content {
+                width: calc(100% - 80px);
+                margin: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>💖 Weekend Plan với BaBe 💖</h1>
+            <p>Một kế hoạch đặc biệt dành riêng cho babe yêu của anh</p>
+        </div>
+
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="time">🕐 16:00 - Thứ 7 (27/8)</div>
+                    <div class="activity">
+                        <span class="emoji">🚗</span>
+                        Anh đón em, khởi hành cuộc phiêu lưu cùng nhau!
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="time">🕐 16:30</div>
+                    <div class="activity">
+                        <span class="emoji">🏨</span>
+                        Check-in khách sạn, để đồ đạc (anh đã book sẵn rồi nhé)
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="time">🕕 17:00 - 18:30</div>
+                    <div class="activity">
+                        <span class="emoji">🍽️</span>
+                        Đi ăn uống no nê bụng, thưởng thức các món ngon yêu thích
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="time">🕖 19:00 - 20:00</div>
+                    <div class="activity">
+                        <span class="emoji">🎮</span>
+                        Đi Center Mall dạo phố, chơi các trò vui vẻ cùng nhau
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="time">🕗 20:30 - 22:00</div>
+                    <div class="activity">
+                        <span class="emoji">☕</span>
+                        Ra cầu Paralbol ngồi uống cà phê, ngắm cảnh romantic
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="time">🕙 22:30 - Đêm</div>
+                    <div class="activity">
+                        <span class="emoji">💻</span>
+                        Về phòng nghỉ ngơi, học bài cùng nhau, xem phim trong không gian riêng tư
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="time">🕙 10:00 - Chủ nhật (28/8)</div>
+                    <div class="activity">
+                        <span class="emoji">🥐</span>
+                        Thức dậy cùng nhau, đi ăn sáng ngon lành rồi về nhà
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <h3 style="color: #e91e63; margin-bottom: 15px;">💝 Anh đợi phản hồi từ em nè babe! 💝</h3>
+            <p style="color: #666;">Em thấy kế hoạch này thế nào? Có gì muốn thay đổi thì em nói anh nhé!</p>
+            <button class="love-button" onclick="showLove()">💖 Em đồng ý nha! 💖</button>
+        </div>
+    </div>
+
+    <script>
+        // Create floating hearts
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.innerHTML = '💖';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = (Math.random() * 3 + 4) + 's';
+            heart.style.opacity = Math.random();
+            document.body.appendChild(heart);
+
+            setTimeout(() => {
+                document.body.removeChild(heart);
+            }, 6000);
+        }
+
+        // Create hearts continuously
+        setInterval(createHeart, 800);
+
+        // Love button function
+        function showLove() {
+            for(let i = 0; i < 20; i++) {
+                setTimeout(() => {
+                    createHeart();
+                }, i * 100);
+            }
+            
+            const button = document.querySelector('.love-button');
+            button.innerHTML = '💕 Yay! Anh yêu em! 💕';
+            button.style.background = 'linear-gradient(45deg, #ff1744, #ff69b4)';
+            
+            setTimeout(() => {
+                button.innerHTML = '💖 Em đồng ý nha! 💖';
+                button.style.background = 'linear-gradient(45deg, #ff69b4, #ff1744)';
+            }, 3000);
+        }
+
+        // Initial hearts when page loads
+        window.addEventListener('load', () => {
+            for(let i = 0; i < 5; i++) {
+                setTimeout(createHeart, i * 1000);
+            }
+        });
+    </script>
+</body>
+</html>
