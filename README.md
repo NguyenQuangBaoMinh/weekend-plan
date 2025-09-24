@@ -1,0 +1,2 @@
+# weekend-plan
+weekend nostress
